@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 public class WikipediaClient {
 
     private static final String USER_AGENT =
-            "RevisionReporter/0.1 (treyford@bsu.edu)";
+            "RevisionReporters/0.1 (Holden, Treyford)";
 
     public String fetchArticleJson(String urlString) throws IOException {
         URL url = new URL(urlString);
@@ -28,7 +28,6 @@ public class WikipediaClient {
             while ((line = reader.readLine()) != null) {
                 json.append(line);
             }
-
             return json.toString();
         }
     }

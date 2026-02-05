@@ -1,7 +1,6 @@
 package edu.bsu.cs222;
 
 import com.jayway.jsonpath.JsonPath;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -38,8 +37,6 @@ public class Main {
             System.err.println("Error: Network error while contacting Wikipedia.");
             return;
         }
-
-        // Handle the missing pages
         try {
             List<String> missing =
                     JsonPath.read(json, "$.query.pages.*.missing");
@@ -53,7 +50,6 @@ public class Main {
         try {
             List<String> redirects =
                     JsonPath.read(json, "$.query.redirects[*].to");
-
             if (!redirects.isEmpty()) {
                 System.out.println("Redirected to " + redirects.get(0));
             }

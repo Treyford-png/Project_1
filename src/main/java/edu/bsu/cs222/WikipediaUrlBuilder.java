@@ -13,9 +13,7 @@ public class WikipediaUrlBuilder {
         if (articleTitle == null || articleTitle.isBlank()) {
             throw new IllegalArgumentException("Article title must not be empty");
         }
-
         String encodedTitle = encode(articleTitle.trim());
-
         return API_ENDPOINT +
                 "?action=query" +
                 "&format=json" +
@@ -25,7 +23,6 @@ public class WikipediaUrlBuilder {
                 "&rvlimit=15" +
                 "&redirects";
     }
-
     private String encode(String value) {
         try {
             return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
