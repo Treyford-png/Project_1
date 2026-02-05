@@ -1,0 +1,8 @@
+Article name:
+    $.query.pages.*.title
+Edit
+    $.query.pages.*.revisions[n]
+        Username:
+            .user
+        Date/Time:
+            .timestamp
