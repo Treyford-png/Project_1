@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 
 public class WikiClient {
 
+    // User Agent requested by Wikipedia
     private static final String USER_AGENT =
             "RevisionReporters/0.1 (Holden, Treyford)";
 
