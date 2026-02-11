@@ -4,7 +4,7 @@ import com.jayway.jsonpath.JsonPath;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-
+/**
 public class Main {
 
     public static void main(String[] args) {
@@ -58,3 +58,4 @@ public class Main {
         System.out.println(json);
     }
 }
+ */
