@@ -24,6 +24,8 @@ public class Time {
     // Checkers
 
     public static boolean checkFormat(String time) {
+        // 04:00:45Z
+
         return false;
     }
 
