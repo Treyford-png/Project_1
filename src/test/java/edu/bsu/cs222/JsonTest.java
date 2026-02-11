@@ -12,8 +12,8 @@ public class JsonTest {
         /*
          * Test 1 - correct name - "Max Verstappen" - Max Verstappen.json
          * Test 2 - redirect name - "verstappen" - verstappen.json
-         * Test 3 -
-         * Tets 4 -
+         * Test 3 - nonsense name - Error: No Wikipedia page found for that article
+         * Tets 4 - null name - Error: no article name provided
          */
         GetJson getAJson = new GetJson();
         getAJson.getJson();
