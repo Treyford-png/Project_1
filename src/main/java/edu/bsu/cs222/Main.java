@@ -18,7 +18,7 @@ public class Main {
             return;
         }
 
-        WikipediaUrlBuilder urlBuilder = new WikipediaUrlBuilder();
+        WikiUrlBuilder urlBuilder = new WikiUrlBuilder();
         String url;
 
         try {
@@ -28,7 +28,7 @@ public class Main {
             return;
         }
 
-        WikipediaClient client = new WikipediaClient();
+        WikiClient client = new WikiClient();
         String json;
 
         try {

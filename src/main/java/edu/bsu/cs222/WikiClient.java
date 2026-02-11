@@ -8,7 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
-public class WikipediaClient {
+public class WikiClient {
 
     private static final String USER_AGENT =
             "RevisionReporters/0.1 (Holden, Treyford)";

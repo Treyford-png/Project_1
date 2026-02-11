@@ -69,7 +69,7 @@ public class Date {
     }
 
     /**
-     * Following 3 methods verify date is formatted, then check for validity of year, month, or day
+     * Following 4 methods verify date is formatted, then check for validity of year, month, or day
      */
 
     public static boolean checkYear(String date) {
@@ -115,9 +115,6 @@ public class Date {
         return day > 0 && day < 31;
     }
 
-    /**
-     * Helper method to calculate LeapYear
-     */
     public static boolean isLeapYear(int i) {
         if (i < 0) {
             return false;

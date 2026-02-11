@@ -1,4 +1,7 @@
 package edu.bsu.cs222;
+import com.jayway.jsonpath.JsonPath;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class WikiEdit {
     private String username;
@@ -31,5 +34,15 @@ public class WikiEdit {
 
     public String getOutput() {
         return date + " " + time + "Z  " + username + "\n";
+    }
+
+    public boolean parseJson(InputStream dataStream) {
+        try {
+            String result = (String) JsonPath.read(dataStream, "$..timestamp");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return true;
     }
 }

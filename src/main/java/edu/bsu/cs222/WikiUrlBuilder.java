@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class WikipediaUrlBuilder {
+public class WikiUrlBuilder {
 
     private static final String API_ENDPOINT =
             "https://en.wikipedia.org/w/api.php";
