@@ -18,12 +18,15 @@ public class GetJson {
         WikiUrlBuilder urlBuilder = new WikiUrlBuilder();
         String articleName = getUserInput();
 
-        // Create URL
-        String url = nameToUrl(articleName);
-        if (url == null) { // Catches and handles invalid article name
+        return jsonFromName(articleName);
+    }
+
+    public static String jsonFromName(String name) {
+        if (name == null) {
             return null;
         }
 
+        String url = nameToUrl(name);
         WikiClient client = new WikiClient();
         String json;
 
@@ -63,7 +66,7 @@ public class GetJson {
 
         if (articleName == null || articleName.isBlank()) {
             System.err.println("Error: No article name provided.");
-            return getUserInput();
+            return null;
         }
         return articleName;
     }
