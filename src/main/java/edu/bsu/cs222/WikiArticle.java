@@ -45,7 +45,7 @@ public class WikiArticle {
             if (!getEditAtIndex(i).doesExists()) {
                 break;
             }
-            System.out.println(getEditAtIndex(i).getOutput());
+            System.out.println(i + "  " + getEditAtIndex(i).getOutput());
         }
     }
 }
