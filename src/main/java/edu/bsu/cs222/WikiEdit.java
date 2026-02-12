@@ -15,21 +15,23 @@ public class WikiEdit {
     }
 
     public WikiEdit(String username, String date, String time) {
-        this.username = Objects.requireNonNullElse(username, "Warning: blank or corrupted Username");
+        this.username = Objects.requireNonNullElse(username, "[Warning: blank or corrupted Username]");
 
         if (!Date.validateDate(date)) {
-            this.date = "Warning: invalid or corrupted date";
+            this.date = "[Warning: invalid or corrupted date]";
         }
         else {
             this.date = date;
         }
 
         if (!Time.checkTime(time)) {
-            this.time = "Warning: invalid or corrupted time";
+            this.time = "[Warning: invalid or corrupted time]";
         }
         else {
             this.time = time;
         }
+
+        exists = true;
     }
 
     public void setUsername(String username) {
@@ -44,6 +46,10 @@ public class WikiEdit {
         this.time = time;
     }
 
+    public void setToExists() {
+        exists = true;
+    }
+
     public void setAll(String username, String date, String time) {
         setUsername(username);
         setDate(date);
@@ -51,8 +57,12 @@ public class WikiEdit {
         exists = true;
     }
 
+    public boolean doesExists() {
+        return exists;
+    }
+
     public String getOutput() {
-        return date + " " + time + "Z  " + username;
+        return date + " " + time + "  " + username;
     }
 
 }

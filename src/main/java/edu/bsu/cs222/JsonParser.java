@@ -5,17 +5,20 @@ import com.jayway.jsonpath.JsonPath;
 import java.util.List;
 
 public class JsonParser {
-    private final String jsonString;
-    private final WikiArticle article;
+    private String jsonString;
+    private WikiArticle article;
 
     public JsonParser(String jsonString) {
+        // End program if JSON isn't made
+        if (jsonString == null) {
+            return;
+        }
         this.jsonString = jsonString;
-
         // JSONArray to String conversion
         List<String> jsonList = JsonPath.read(jsonString, "$.query.pages.*.title");
         String articleName = convertJsonStr(jsonList);
-
-        article = new WikiArticle(articleName);
+        boolean redirected = jsonString.contains("Redirect");
+        article = new WikiArticle(articleName, redirected);
         populateEditArray();
     }
 
@@ -32,17 +35,16 @@ public class JsonParser {
     }
 
     public String getDateString(String timestamp) {
-        return timestamp.substring(0, 9);
+        return timestamp.substring(0, 10);
     }
 
     public String getTimeString(String timestamp) {
-        return timestamp.substring(11, 19);
+        return timestamp.substring(11);
     }
 
     public void populateEditArray() {
         WikiEdit edit;
         for (int i = 0; i < 15; i++) {
-            System.out.println(i);
 
             // Terminate loop if no more edits are present
             List<String> revisionString = JsonPath.read(jsonString, "$.query.pages.*.revisions[" + i + "]");
@@ -59,7 +61,6 @@ public class JsonParser {
             String time = getTimeString(timestamp);
 
             edit = new WikiEdit(user, date, time);
-
             article.addEditToArray(edit, i);
         }
     }

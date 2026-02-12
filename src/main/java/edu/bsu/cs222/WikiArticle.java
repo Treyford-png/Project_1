@@ -3,13 +3,14 @@ package edu.bsu.cs222;
 public class WikiArticle {
     private final String articleName;
     private final WikiEdit[] editArray = new WikiEdit[15];
+    private  boolean redirected;
 
-    public WikiArticle(String articleName) {
+    public WikiArticle(String articleName, boolean redirected) {
         this.articleName = articleName;
-
+        this.redirected = redirected;
         // Fills array with null edits
         for (int i = 0; i < 15; i++) {
-            this.editArray[i] = null;
+            this.editArray[i] = new WikiEdit();
         }
     }
 
@@ -34,5 +35,17 @@ public class WikiArticle {
 
     public WikiEdit getEditAtIndex(int index) {
         return editArray[index];
+    }
+
+    public void print() {
+        if (redirected) {
+            System.out.println("Redirects to " + getArticleName());
+        }
+        for (int i = 0; i < 15; i++) {
+            if (!getEditAtIndex(i).doesExists()) {
+                break;
+            }
+            System.out.println(getEditAtIndex(i).getOutput());
+        }
     }
 }

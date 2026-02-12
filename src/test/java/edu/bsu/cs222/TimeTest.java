@@ -1,12 +1,6 @@
 package edu.bsu.cs222;
 import org.junit.jupiter.api.Test;
-// 2024
-// 2025
-// 2026
-// 2000
-// 1900
-// 0
-// non int input
+
 public class TimeTest {
     String correctString = "2025-11-22";
     String invalidYear = "1997-11-22";
@@ -18,7 +12,7 @@ public class TimeTest {
         assert Date.getYear(correctString) == 2025;
         assert Date.getMonth(correctString) == 11;
         assert Date.getDay(correctString) == 22;
-        assert !Date.checkInvalidFormat(correctString);
+        assert !Date.checkInvalidFormat(correctString); // Check format
         assert Date.checkYear(correctString);
         assert Date.checkMonth(correctString);
         assert Date.checkDay(correctString);
@@ -29,14 +23,15 @@ public class TimeTest {
         assert Date.getYear(invalidYear) == 1997;
         assert Date.getMonth(invalidYear) == 11;
         assert Date.getDay(invalidYear) == 22;
-        assert !Date.checkInvalidFormat(invalidYear);
-        assert !Date.checkYear(invalidYear);
+        assert !Date.checkInvalidFormat(invalidYear); // Check format
+        assert !Date.checkYear(invalidYear); // Check year
         assert Date.checkMonth(invalidYear);
         assert Date.checkDay(invalidYear);
     }
 
     @Test
     public void testCaseWrongFormat() {
+        // All invalid
         assert Date.checkInvalidFormat(wrongFormat);
         assert Date.getYear(wrongFormat) == -1;
         assert Date.getMonth(wrongFormat) == -1;
@@ -48,6 +43,7 @@ public class TimeTest {
 
     @Test
     public void testCaseEmpty() {
+        // All invalid
         assert Date.getYear(empty) == -1;
         assert Date.getMonth(empty) == -1;
         assert Date.getDay(empty) == -1;
