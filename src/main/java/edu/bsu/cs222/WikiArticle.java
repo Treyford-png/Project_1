@@ -1,24 +1,16 @@
 package edu.bsu.cs222;
 
 public class WikiArticle {
-    private String articleName;
-    private WikiEdit[] editArray = new WikiEdit[15];
+    private final String articleName;
+    private final WikiEdit[] editArray = new WikiEdit[15];
+    private  boolean redirected;
 
-    public WikiArticle(String articleName, WikiEdit[] editArray) {
+    public WikiArticle(String articleName, boolean redirected) {
         this.articleName = articleName;
-
-        // Copies given array to object array
-        int arrayIterator = 0;
-        for (arrayIterator = 0; arrayIterator < editArray.length; arrayIterator++) {
-            if (arrayIterator >= 15) { // Should never be activated, just for safety
-                break;
-            }
-            this.editArray[arrayIterator] = editArray[arrayIterator];
-        }
-
-        // Fills rest of array, if necessary
-        for (int i = arrayIterator; i < 15; i++) {
-            this.editArray[i] = null;
+        this.redirected = redirected;
+        // Fills array with null edits
+        for (int i = 0; i < 15; i++) {
+            this.editArray[i] = new WikiEdit();
         }
     }
 
@@ -27,6 +19,10 @@ public class WikiArticle {
         for (int i = 0; i < 15; i++) {
             editArray[i] = null;
         }
+    }
+
+    public WikiEdit getWikiEdit(int index) {
+        return editArray[index];
     }
 
     public void addEditToArray(WikiEdit edit, int index) {
@@ -39,5 +35,17 @@ public class WikiArticle {
 
     public WikiEdit getEditAtIndex(int index) {
         return editArray[index];
+    }
+
+    public void print() {
+        if (redirected) {
+            System.out.println("Redirects to " + getArticleName());
+        }
+        for (int i = 0; i < 15; i++) {
+            if (!getEditAtIndex(i).doesExists()) {
+                break;
+            }
+            System.out.println(getEditAtIndex(i).getOutput());
+        }
     }
 }

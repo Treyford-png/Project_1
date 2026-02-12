@@ -16,6 +16,7 @@ public class Date {
      * Errors throw -1 return value
      */
 
+
     public static int getYear(String date) {
         // Error prevention
         if (date == null) {
@@ -132,7 +133,7 @@ public class Date {
      * @param date String
      * @return if yyyy-mm-dd is possible
      */
-    private static boolean validateDate(String date) {
+    public static boolean validateDate(String date) {
         // Checks format separately to prevent errors
         if (checkInvalidFormat(date)) {
             return false;

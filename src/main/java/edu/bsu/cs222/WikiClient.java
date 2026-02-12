@@ -10,21 +10,24 @@ import java.nio.charset.StandardCharsets;
 
 public class WikiClient {
 
+    // User Agent requested by Wikipedia
     private static final String USER_AGENT =
             "RevisionReporters/0.1 (Holden, Treyford)";
 
     public String fetchArticleJson(String urlString) throws IOException {
+        // Connects to Wikipedia article's API using URL obtained in WikiUrlBuilder
         URL url = new URL(urlString);
         URLConnection connection = url.openConnection();
         connection.setRequestProperty("User-Agent", USER_AGENT);
 
+        // Reads stream directly from Wikipedia API
         try (InputStream inputStream = connection.getInputStream();
              BufferedReader reader = new BufferedReader(
                      new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
+            // Creates JSON from stream
             StringBuilder json = new StringBuilder();
             String line;
-
             while ((line = reader.readLine()) != null) {
                 json.append(line);
             }
