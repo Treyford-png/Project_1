@@ -1,23 +1,14 @@
 package edu.bsu.cs222;
 
 public class WikiArticle {
-    private String articleName;
-    private WikiEdit[] editArray = new WikiEdit[15];
+    private final String articleName;
+    private final WikiEdit[] editArray = new WikiEdit[15];
 
-    public WikiArticle(String articleName, WikiEdit[] editArray) {
+    public WikiArticle(String articleName) {
         this.articleName = articleName;
 
-        // Copies given array to object array
-        int arrayIterator = 0;
-        for (arrayIterator = 0; arrayIterator < editArray.length; arrayIterator++) {
-            if (arrayIterator >= 15) { // Should never be activated, just for safety
-                break;
-            }
-            this.editArray[arrayIterator] = editArray[arrayIterator];
-        }
-
-        // Fills rest of array, if necessary
-        for (int i = arrayIterator; i < 15; i++) {
+        // Fills array with null edits
+        for (int i = 0; i < 15; i++) {
             this.editArray[i] = null;
         }
     }
@@ -27,6 +18,10 @@ public class WikiArticle {
         for (int i = 0; i < 15; i++) {
             editArray[i] = null;
         }
+    }
+
+    public WikiEdit getWikiEdit(int index) {
+        return editArray[index];
     }
 
     public void addEditToArray(WikiEdit edit, int index) {

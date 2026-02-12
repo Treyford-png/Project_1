@@ -1,23 +1,35 @@
 package edu.bsu.cs222;
-import com.jayway.jsonpath.JsonPath;
-import java.io.IOException;
-import java.io.InputStream;
+import java.util.Objects;
 
 public class WikiEdit {
     private String username;
     private String date; // yyyy/mm/dd
     private String time; // hh/mm/ssZ (UTC)
+    private boolean exists; // Used to determine end of documented edits
 
     public WikiEdit() {
         username = null;
         date = "0000-00-00";
         time = "00-00-00Z";
+        exists = false;
     }
 
     public WikiEdit(String username, String date, String time) {
-        this.username = username;
-        this.date = date;
-        this.time = time;
+        this.username = Objects.requireNonNullElse(username, "Warning: blank or corrupted Username");
+
+        if (!Date.validateDate(date)) {
+            this.date = "Warning: invalid or corrupted date";
+        }
+        else {
+            this.date = date;
+        }
+
+        if (!Time.checkTime(time)) {
+            this.time = "Warning: invalid or corrupted time";
+        }
+        else {
+            this.time = time;
+        }
     }
 
     public void setUsername(String username) {
@@ -32,17 +44,15 @@ public class WikiEdit {
         this.time = time;
     }
 
+    public void setAll(String username, String date, String time) {
+        setUsername(username);
+        setDate(date);
+        setTime(time);
+        exists = true;
+    }
+
     public String getOutput() {
-        return date + " " + time + "Z  " + username + "\n";
+        return date + " " + time + "Z  " + username;
     }
 
-    public boolean parseJson(InputStream dataStream) {
-        try {
-            String result = (String) JsonPath.read(dataStream, "$..timestamp");
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return true;
-    }
 }
