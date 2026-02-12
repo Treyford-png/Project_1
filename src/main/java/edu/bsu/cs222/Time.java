@@ -1,5 +1,13 @@
 package edu.bsu.cs222;
 
+/**
+ * Checks the validity of a time string to detect corruption
+ * format: hh:mm:ssZ (Z represents UTC)
+ *
+ * @author Holden Hankins
+ * @author Treyford Mercer
+ * @version 0.1.0
+ */
 public class Time {
 
     /**
@@ -50,7 +58,6 @@ public class Time {
      * 0 <= hours <= 24
      * 0 <= minutes <= 60
      * 0 <= seconds <= 60
-     * Time ends in 'Z', which is symbol for GMT + 0
      */
 
     public static boolean checkFormat(String time) {

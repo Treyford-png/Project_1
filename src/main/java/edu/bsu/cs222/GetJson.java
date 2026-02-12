@@ -5,13 +5,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Uses WikiUrlBuilder to create a URL from user input
+ * Turns URL into JSON from Wikipedia API using WikiClient
+ * NOTE: Treyford Mercer wrote all code, Holden Hankins merely refactored for better testing
+ *
+ * @author Treyford Mercer
+ * @author Holden Hankins
+ * @version 0.1.0
+ */
 public class GetJson {
-
-    /**
-     * All code originally written by Treyford Mercer as Main.java
-     * Refactored into Json.java by Holden Hankins to allow for implementation of parsing
-     * Check GitHub commit history for more information on blame
-     */
     public static String getUserInput() {
         // Asks user for an article name
         Scanner scanner = new Scanner(System.in);

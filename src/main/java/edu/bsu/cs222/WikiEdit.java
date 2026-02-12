@@ -1,6 +1,14 @@
 package edu.bsu.cs222;
 import java.util.Objects;
 
+/**
+ * Stores information retaining a revision made to a Wikipedia article
+ * Information stored is username, date (validated in Date), and time (validated in Time)
+ *
+ * @author Holden Hankins
+ * @author Treyford Mercer
+ * @version 0.1.0
+ */
 public class WikiEdit {
     private String username;
     private String date; // yyyy/mm/dd

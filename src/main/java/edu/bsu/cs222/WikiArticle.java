@@ -1,5 +1,12 @@
 package edu.bsu.cs222;
 
+/**
+ * Stores a Wikipedia article's name, if a redirect, and most recent revisions
+ *
+ * @author Holden Hankins
+ * @author Treyford Mercer
+ * @version 0.1.0
+ */
 public class WikiArticle {
     private final String articleName;
     private final WikiEdit[] editArray = new WikiEdit[15];

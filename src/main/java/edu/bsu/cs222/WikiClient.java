@@ -8,6 +8,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Connects to Wikipedia API client and fetches JSON as a String
+ *
+ * @author Treyford Mercer
+ * @author Holden Hankins
+ * @version 0.1.0
+ */
 public class WikiClient {
 
     // User Agent requested by Wikipedia

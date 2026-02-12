@@ -1,5 +1,13 @@
 package edu.bsu.cs222;
 
+/**
+ * Main method for program
+ * Asks user for article -> gets JSON from Wikipedia relating to said article -> prints out last 15 edits
+ *
+ * @author Holden Hankins
+ * @author Treyford Mercer
+ * @version 0.1.0
+ */
 public class GetWikiEditHistory {
     public static void main(String[] args) {
         // User Query -> JSON file

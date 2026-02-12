@@ -3,6 +3,12 @@ package edu.bsu.cs222;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Builds a URL by inserting an article title into prewritten API call
+ *
+ * @author Treyford Mercer
+ * @version 0.1.0
+ */
 public class WikiUrlBuilder {
 
     public String buildUrl(String articleTitle) {

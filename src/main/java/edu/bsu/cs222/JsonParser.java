@@ -1,9 +1,15 @@
 package edu.bsu.cs222;
 
 import com.jayway.jsonpath.JsonPath;
-
 import java.util.List;
 
+/**
+ * Parses out article name, redirect, and revision history from JSON string
+ *
+ * @author Holden Hankins
+ * @author Treyford Mercer
+ * @version 0.1.0
+ */
 public class JsonParser {
     private String jsonString;
     private WikiArticle article;
@@ -42,6 +48,9 @@ public class JsonParser {
         return timestamp.substring(11);
     }
 
+    /**
+     * Uses an edit gathered from JSON to create a WikiEdit class stored in editArray
+     */
     public void populateEditArray() {
         WikiEdit edit;
         for (int i = 0; i < 15; i++) {
