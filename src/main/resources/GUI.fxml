@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button ?>
-<?import javafx.scene.control.Label ?>
-
-
-<GridPane fx:controller="edu.bsu.cs222.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-
-</GridPane>
 
 <!-- <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -22,3 +10,16 @@
 
 </AnchorPane>
 -->
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs222.Controller">
+   <children>
+      <Label text="Wikipedia Pop-up" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0">
+         <children>
+            <Label text="Article Name:" />
+            <TextField fx:id="textbox" />
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" onAction="#Method" text="Search" />
+   </children>
+</VBox>
