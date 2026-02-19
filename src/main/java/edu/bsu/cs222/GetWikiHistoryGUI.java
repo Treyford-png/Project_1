@@ -11,9 +11,11 @@ public class GetWikiHistoryGUI extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI.fxml"));
-        stage.setScene(new Scene(root, 300, 275));
+        stage.setScene(new Scene(root, 600, 400));
         stage.setTitle("Wikipedia Revision Retriever");
         stage.show();
+
+
     }
     public static void main(String[] args) {launch(args); }
     

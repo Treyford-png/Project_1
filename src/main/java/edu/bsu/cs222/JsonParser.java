@@ -21,11 +21,16 @@ public class JsonParser {
         }
 
         this.jsonSwitchString = jsonSwitchString;
+        String jsonString = jsonSwitchString.getString();
         // JSONArray to String conversion
         if(jsonSwitchString.isStringOrError() == StringOrError.STRING) {
             List<String> jsonList = JsonPath.read(jsonSwitchString.getString(), "$.query.pages.*.title");
             String articleName = convertJsonStr(jsonList);
-            boolean redirected = jsonSwitchString.getString().contains("Redirect");
+            boolean redirected = false;
+            List<String> redirects = JsonPath.read(jsonString, "$.query.redirects[*].to");
+            if (!redirects.isEmpty()) {
+                redirected = true;
+            }
             article = new WikiArticle(articleName, redirected, jsonSwitchString);
             populateEditArray();
         }

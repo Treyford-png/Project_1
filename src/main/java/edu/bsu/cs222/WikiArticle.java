@@ -54,12 +54,12 @@ public class WikiArticle {
         }
         StringBuilder printStr = new StringBuilder();
         if (redirected) {
-            printStr.append("Redirects to ").append(getArticleName());
+            printStr.append("Redirects to ").append(getArticleName()).append("\n\n");
         }
 
 
         for (int i = 0; i < 15; i++) {
-            printStr.append(i).append("  ").append(getEditAtIndex(i).getOutput());
+            printStr.append(i + 1).append("  ").append(getEditAtIndex(i).getOutput());
         }
 
         return "" + printStr;

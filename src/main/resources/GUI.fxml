@@ -2,24 +2,22 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<!-- <AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.bsu.cs222.controller"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
--->
-
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs222.Controller">
+<VBox alignment="CENTER" prefHeight="281.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.bsu.cs222.Controller">
    <children>
-      <Label text="Wikipedia Pop-up" />
+      <Label text="Wikipedia Revision History">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font></Label>
+      <Label text="Search an article name to get the 15 most recent revisions" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="6.0">
          <children>
             <Label text="Article Name:" />
-            <TextField fx:id="textbox" />
+            <TextField fx:id="inputBox" />
+            <Button mnemonicParsing="false" onAction="#controller" text="Search" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#controller" text="Search" />
+      <TextArea fx:id="outputBox" editable="false" prefHeight="147.0" prefWidth="436.0" />
    </children>
 </VBox>
