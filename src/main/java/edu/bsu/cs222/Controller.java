@@ -33,7 +33,7 @@ public class Controller {
      */
     public String getOutput(String input){
         if (input.isEmpty()) { // Handles no input
-            return "Error 400: bad request";
+
         }
 
         // Gets JSON
