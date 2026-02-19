@@ -6,14 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class GUI_Main extends Application {
+public class GetWikiHistoryGUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI.fxml"));
-        System.out.println(getClass().getResource("/GUI.fxml"));
         stage.setScene(new Scene(root, 300, 275));
-        stage.setTitle("Hello World");
+        stage.setTitle("Wikipedia Revision Retriever");
         stage.show();
     }
     public static void main(String[] args) {launch(args); }

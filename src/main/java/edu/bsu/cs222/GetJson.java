@@ -3,7 +3,6 @@ package edu.bsu.cs222;
 import com.jayway.jsonpath.JsonPath;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Uses WikiUrlBuilder to create a URL from user input
@@ -14,45 +13,41 @@ import java.util.Scanner;
  * @author Holden Hankins
  * @version 0.1.0
  */
+
 public class GetJson {
-    public static String getUserInput() {
-        // Asks user for an article name
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Wikipedia article name: ");
-        String articleName = scanner.nextLine();
-        System.out.println(); // Output formatting
 
-        // Error for blank article name
-        if (articleName == null || articleName.isBlank()) {
-            System.err.println("Error: No article name provided.");
-            return null;
+    public static SwitchString nameToUrl(String articleName) {
+        if (articleName == null) {
+            return new SwitchString("NULL_NAME", StringOrError.ERROR);
         }
-        return articleName;
-    }
-
-    public static String nameToUrl(String articleName) {
         WikiUrlBuilder urlBuilder = new WikiUrlBuilder();
         String url;
         try {
             url = urlBuilder.buildUrl(articleName);
         } catch (IllegalArgumentException e) {
-            System.err.println("Error: Invalid article name.");
-            return null;
+            return new SwitchString("ERROR", StringOrError.ERROR);
         }
-        return url;
+        return new SwitchString(url, StringOrError.STRING);
     }
 
     /**
      * Takes an article name as a String and attempts to convert into a JSON file
      * @return edit history JSON as a String
+     *
      */
-    public static String jsonFromName(String name) {
-        // Prevents null errors
-        if (name == null) {
-            return null;
+    public static SwitchString jsonFromName(String name) {
+        // Gets article URL
+        SwitchString urlSwitchString = nameToUrl(name);
+        String url = urlSwitchString.getString();
+        if (urlSwitchString.isStringOrError() == StringOrError.ERROR) {
+            if (url.equals("ERROR")) {
+                return new SwitchString("Error 408: request timeout", StringOrError.ERROR);
+            }
+            else {
+                return new SwitchString("Error 400: bad request", StringOrError.ERROR);
+            }
         }
 
-        String url = nameToUrl(name);
         WikiClient client = new WikiClient();
         String json;
 
@@ -60,8 +55,7 @@ public class GetJson {
         try {
             json = client.fetchArticleJson(url);
         } catch (IOException e) {
-            System.err.println("Error: Network error while contacting Wikipedia.");
-            return null;
+            return new SwitchString("Error 408: request timeout", StringOrError.ERROR);
         }
 
         // Checks for no page containing wiki article
@@ -69,21 +63,11 @@ public class GetJson {
             List<String> missing = JsonPath.read(json, "$.query.pages.*.missing");
 
             if (!missing.isEmpty()) {
-                System.err.println("Error: No Wikipedia page found for that article.");
-                return null;
+                return new SwitchString("Error 404: page not found", StringOrError.ERROR);
             }
         } catch (Exception ignored) {
         }
 
-        // Redirects if necessary
-        try {
-            List<String> redirects = JsonPath.read(json, "$.query.redirects[*].to");
-            if (!redirects.isEmpty()) {
-                System.out.println("Redirected to " + redirects.get(0));
-            }
-        } catch (Exception ignored) {
-        }
-
-        return json;
+        return new SwitchString(json, StringOrError.STRING);
     }
 }

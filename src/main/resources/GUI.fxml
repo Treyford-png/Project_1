@@ -5,7 +5,7 @@
 
 <!-- <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.bsu.cs222.Controller"
+            fx:controller="edu.bsu.cs222.controller"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>
@@ -20,6 +20,6 @@
             <TextField fx:id="textbox" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" onAction="#Method" text="Search" />
+      <Button mnemonicParsing="false" onAction="#controller" text="Search" />
    </children>
 </VBox>

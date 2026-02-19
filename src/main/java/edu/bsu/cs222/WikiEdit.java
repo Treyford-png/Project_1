@@ -23,17 +23,17 @@ public class WikiEdit {
     }
 
     public WikiEdit(String username, String date, String time) {
-        this.username = Objects.requireNonNullElse(username, "[Warning: blank or corrupted Username]");
+        this.username = Objects.requireNonNullElse(username, "[CORRUPTED USERNAME]");
 
         if (!Date.validateDate(date)) {
-            this.date = "[Warning: invalid or corrupted date]";
+            this.date = "[CORRUPTED DATE]";
         }
         else {
             this.date = date;
         }
 
         if (!Time.checkTime(time)) {
-            this.time = "[Warning: invalid or corrupted time]";
+            this.time = "[CORRUPTED TIME]";
         }
         else {
             this.time = time;
@@ -70,7 +70,6 @@ public class WikiEdit {
     }
 
     public String getOutput() {
-        return date + " " + time + "  " + username;
+        return date + " " + time + "  " + username + "\n";
     }
-
 }

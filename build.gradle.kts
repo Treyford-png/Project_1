@@ -32,5 +32,5 @@ javafx {
     modules("javafx.controls", "javafx.fxml")
 }
 application {
-    mainClass.set("edu.bsu.cs222.GUI_Main")
+    mainClass.set("edu.bsu.cs222.GetWikiHistoryGUI")
 }

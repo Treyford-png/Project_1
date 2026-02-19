@@ -11,23 +11,28 @@ import java.util.List;
  * @version 0.1.0
  */
 public class JsonParser {
-    private String jsonString;
+    private SwitchString jsonSwitchString;
     private WikiArticle article;
 
-    public JsonParser(String jsonString) {
-        // End program if JSON isn't made
-        if (jsonString == null) {
+    public JsonParser(SwitchString jsonSwitchString) {
+        // Handle errors if jsonSwitchString not made
+        if (jsonSwitchString == null) {
             return;
         }
-        this.jsonString = jsonString;
-        // JSONArray to String conversion
-        List<String> jsonList = JsonPath.read(jsonString, "$.query.pages.*.title");
-        String articleName = convertJsonStr(jsonList);
-        boolean redirected = jsonString.contains("Redirect");
-        article = new WikiArticle(articleName, redirected);
-        populateEditArray();
-    }
 
+        this.jsonSwitchString = jsonSwitchString;
+        // JSONArray to String conversion
+        if(jsonSwitchString.isStringOrError() == StringOrError.STRING) {
+            List<String> jsonList = JsonPath.read(jsonSwitchString.getString(), "$.query.pages.*.title");
+            String articleName = convertJsonStr(jsonList);
+            boolean redirected = jsonSwitchString.getString().contains("Redirect");
+            article = new WikiArticle(articleName, redirected, jsonSwitchString);
+            populateEditArray();
+        }
+        else {
+            article = new WikiArticle("", false, jsonSwitchString);
+        }
+    }
 
     public WikiArticle getArticle() {
         return article;
@@ -54,6 +59,8 @@ public class JsonParser {
     public void populateEditArray() {
         WikiEdit edit;
         for (int i = 0; i < 15; i++) {
+
+            String jsonString = jsonSwitchString.getString();
 
             // Terminate loop if no more edits are present
             List<String> revisionString = JsonPath.read(jsonString, "$.query.pages.*.revisions[" + i + "]");
